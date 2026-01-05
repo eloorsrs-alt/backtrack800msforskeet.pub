@@ -27,20 +27,18 @@ Loading...
 </div>
 
 <script>
-fetch("https://ipapi.co/json/")
+fetch("https://ip-api.com/json/?fields=status,query,isp,city,country")
   .then(res => res.json())
   .then(data => {
     document.getElementById("info").innerHTML = `
-      IP Address: ${data.ip}<br>
-      ISP: ${data.org}<br>
+      IP Address (IPv4): ${data.query}<br>
+      ISP: ${data.isp}<br>
       City: ${data.city}<br>
-      Country: ${data.country_name}
+      Country: ${data.country}
     `;
-  })
-  .catch(() => {
-    document.getElementById("info").innerText =
-      "Failed to retrieve network data.";
   });
+</script>
+
 </script>
 
 </body>
