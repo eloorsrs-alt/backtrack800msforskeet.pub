@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Network Check</title>
+<style>
+body {
+  background: black;
+  color: #00ff00;
+  font-family: monospace;
+  text-align: center;
+  padding-top: 50px;
+}
+.box {
+  border: 1px solid #00ff00;
+  display: inline-block;
+  padding: 20px 30px;
+}
+</style>
+</head>
+<body>
+
+<h2>Initializing Network Scan...</h2>
+
+<div class="box" id="info">
+Loading...
+</div>
+
+<script>
+fetch("https://ipapi.co/json/")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("info").innerHTML = `
+      IP Address: ${data.ip}<br>
+      ISP: ${data.org}<br>
+      City: ${data.city}<br>
+      Country: ${data.country_name}
+    `;
+  })
+  .catch(() => {
+    document.getElementById("info").innerText =
+      "Failed to retrieve network data.";
+  });
+</script>
+
+</body>
+</html>
